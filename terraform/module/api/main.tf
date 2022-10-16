@@ -3,7 +3,6 @@ variable "gcp_service_list" {
   default = [
     "cloudbuild.googleapis.com",
     "containerregistry.googleapis.com",
-    "compute.googleapis.com",
     "run.googleapis.com",
     "cloudresourcemanager.googleapis.com"
   ]
