@@ -3,13 +3,14 @@ variable "project_id" {
   type = number
 }
 
-resource "google_project_iam_binding" "project" {
+resource "google_project_iam_member" "cloudbuild_iam" {
+  for_each = toset([
+    "roles/run.developer",
+    "roles/iam.serviceAccountUser"
+  ])
+  role    = each.key
+  member  = "serviceAccount:${var.project_id}@cloudbuild.gserviceaccount.com"
   project = var.project_id
-  role    = "roles/run.developer"
-
-  members = [
-    "serviceAccount:${var.project_id}@cloudbuild.gserviceaccount.com",
-  ]
 }
 
 resource "google_cloudbuild_trigger" "cloudbuild_sample_api" {

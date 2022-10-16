@@ -10,11 +10,11 @@ terraform {
 }
 
 variable "project_name" {
-  type    = string
+  type = string
 }
 
 variable "project_id" {
-  type    = number
+  type = number
 }
 
 provider "google" {
