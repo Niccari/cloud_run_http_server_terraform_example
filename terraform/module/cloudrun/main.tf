@@ -37,11 +37,14 @@ resource "google_cloud_run_service" "configure_cloud_run_service" {
   }
 
   lifecycle {
-    # gcloudからデプロイしたとき、以下のパラメータが入る。変更差分として判定したくないのでチェック対象から外す
     ignore_changes = [
+      # gcloudからデプロイしたとき、以下のパラメータが入る。変更差分として判定したくないのでチェック対象から外す
       template[0].metadata[0].annotations["client.knative.dev/user-image"],
       template[0].metadata[0].annotations["run.googleapis.com/client-name"],
-      template[0].metadata[0].annotations["run.googleapis.com/client-version"]
+      template[0].metadata[0].annotations["run.googleapis.com/client-version"],
+      # Clour Buildからビルド・デプロイしたとき、以下のパラメータが入る。変更差分として判定したくないのでチェック対象から外す
+      template[0].metadata[0].labels,
+      template[0].spec[0].containers["image"]
     ]
   }
 }
