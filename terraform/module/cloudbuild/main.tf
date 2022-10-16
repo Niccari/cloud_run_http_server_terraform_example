@@ -26,7 +26,6 @@ resource "google_cloudbuild_trigger" "cloudbuild_sample_api" {
     }
   }
   included_files = [
-    "terraform/*.tf",
     "**/*.py",
     "Dockerfile",
     "Pipfile*",
