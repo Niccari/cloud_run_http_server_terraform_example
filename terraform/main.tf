@@ -13,6 +13,10 @@ variable "project_name" {
   type    = string
 }
 
+variable "project_id" {
+  type    = number
+}
+
 provider "google" {
   project                     = var.project_name
   region                      = "us-central1"
@@ -26,6 +30,7 @@ module "api" {
 module "cloudbuild" {
   source     = "./module/cloudbuild"
   depends_on = [module.api]
+  project_id = var.project_id
 }
 
 module "cloudrun" {
