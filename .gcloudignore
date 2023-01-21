@@ -1,3 +1,9 @@
 terraform
 .gitignore
-Pipfile*
+.git
+*.yaml
+LICENSE
+*.md
+poetry.lock
+pyproject.toml
+
